@@ -40,3 +40,6 @@
 
 		3.3/ Vérifier que votre joueur virtuel sait jouer au Uno :
 			java -cp .:UnoS1.jar uno.TestCaseProcessor zulu
+
+4/ JAVADOC
+	javadoc -cp .:UnoS1.jar -d ./javadoc  Lbertra2UnoPlayer.java
