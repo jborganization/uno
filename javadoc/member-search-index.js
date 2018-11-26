@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"uno","c":"Lbertra2UnoPlayer","l":"callColor(List<Card>)","url":"callColor-java.util.List-"},{"p":"uno","c":"Lbertra2UnoPlayer","l":"Lbertra2UnoPlayer()"},{"p":"uno","c":"Lbertra2UnoPlayer","l":"play(List<Card>, Card, UnoPlayer.Color, GameState)","url":"play-java.util.List-uno.Card-uno.UnoPlayer.Color-uno.GameState-"}]
