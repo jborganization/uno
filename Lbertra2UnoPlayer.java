@@ -2,7 +2,7 @@ package uno;
 
 import java.util.List;
 
-public class Lbertra2_UnoPlayer implements UnoPlayer {
+public class Lbertra2UnoPlayer implements UnoPlayer {
 
   public int play(List<Card> hand, Card upCard, Color calledColor,
       GameState state) {

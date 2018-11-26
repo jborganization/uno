@@ -33,10 +33,10 @@
 3/ COMMENT COMPILER LE CODE ET L'EXECUTER (+autres instructions):
 
 		3.1/ Compilation :
-			javac -cp .:UnoS1.jar -d . lbertra2_UnoPlayer.java
+			javac -cp .:UnoS1.jar -d . Lbertra2UnoPlayer.java
 
 		3.2/ Execution :
-			java -cp .:UnoS1.jar lbertra2_UnoPlayer.java
+			java -cp .:UnoS1.jar Lbertra2UnoPlayer.java
 
 		3.3/ Vérifier que votre joueur virtuel sait jouer au Uno :
-			java -cp .:UnoS1.jar uno.TestCaseProcessor tjacob3 (ou lbertra2)
+			java -cp .:UnoS1.jar uno.TestCaseProcessor zulu
