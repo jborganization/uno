@@ -29,3 +29,14 @@
 
 	2.2/ DOWNLOAD
 		- $ git pull -u origin master
+
+3/ COMMENT COMPILER LE CODE ET L'EXECUTER:
+
+		3.1/ Compilation :
+			javac -cp .:UnoS1.jar -d . lbertra2_UnoPlayer.java
+
+		3.2/ Execution :
+			java -cp .:UnoS1.jar lbertra2_UnoPlayer.java
+
+		3.3/ Vérifier que votre joueur virtuel sait jouer au Uno :
+			java -cp .:UnoS1.jar uno.TestCaseProcessor tjacob3 (ou lbertra2)
