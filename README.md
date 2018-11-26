@@ -30,7 +30,7 @@
 	2.2/ DOWNLOAD
 		- $ git pull -u origin master
 
-3/ COMMENT COMPILER LE CODE ET L'EXECUTER:
+3/ COMMENT COMPILER LE CODE ET L'EXECUTER (+autres instructions):
 
 		3.1/ Compilation :
 			javac -cp .:UnoS1.jar -d . lbertra2_UnoPlayer.java
