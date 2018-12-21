@@ -43,4 +43,4 @@
 			java -cp .:UnoS1.jar uno.UnoSimulation 1000 verbose
 
 4/ JAVADOC
-	javadoc -cp .:UnoS1.jar -d ./javadoc  Lbertra2UnoPlayer.java
+	javadoc -cp .:UnoS1.jar -d ./javadoc  lbertra2UnoPlayer.java
