@@ -60,3 +60,5 @@
 		/home/loic/program_files/sonarqube/SonnarRunner/bin/sonar-scanner
 
 		/home/lbertra2/Bureau/SonnarScanner/bin/sonar-scanner
+
+Ceci est un test pour
