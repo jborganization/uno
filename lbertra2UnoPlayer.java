@@ -17,12 +17,22 @@ public class lbertra2UnoPlayer implements UnoPlayer {
   public int play(List<Card> hand, Card upCard, Color calledColor, GameState state) {
     ArrayList<Integer> numList=new ArrayList<Integer>();
     int higPos=-1;
-
     int skiPos=-1;
     int revPos=-1;
     int draPos=-1;
     int wilPos=-1;
     int wifPos=-1;
+
+    int redCounter = 0;
+    int greCounter = 0;
+    int bluCounter = 0;
+    int yelCounter = 0;
+    int numCounter = 0;
+    int skiCounter = 0;
+    int revCounter = 0;
+    int draCounter = 0;
+    int wilCounter = 0;
+    int wifCounter = 0;
 
     // POUR chaque carte en main FAIRE:
     for (int i=0;i<hand.size() ;i++ ) {
@@ -58,6 +68,39 @@ public class lbertra2UnoPlayer implements UnoPlayer {
         }
       }
       higPos=numList.get(mem);
+    }
+
+    for (int i=0;i<state.getPlayedCards().size() ;i++ ) { //Cette boucle sert à compter les cartes jouées par les joueurs
+      if (state.getPlayedCards().get(i).getRank()==Rank.NUMBER) {
+        numCounter++;
+      }
+      if (state.getPlayedCards().get(i).getRank()==Rank.SKIP) {
+        skiCounter++;
+      }
+      if (state.getPlayedCards().get(i).getRank()==Rank.REVERSE) {
+        revCounter++;
+      }
+      if (state.getPlayedCards().get(i).getRank()==Rank.DRAW_TWO) {
+        draCounter++;
+      }
+      if (state.getPlayedCards().get(i).getRank()==Rank.WILD) {
+        wilCounter++;
+      }
+      if (state.getPlayedCards().get(i).getRank()==Rank.WILD_D4) {
+        wifCounter++;
+      }
+      if (state.getPlayedCards().get(i).getColor()==Color.RED) {
+        redCounter++;
+      }
+      if (state.getPlayedCards().get(i).getColor()==Color.GREEN) {
+        greCounter++;
+      }
+      if (state.getPlayedCards().get(i).getColor()==Color.BLUE) {
+        bluCounter++;
+      }
+      if (state.getPlayedCards().get(i).getColor()==Color.YELLOW) {
+        yelCounter++;
+      }
     }
 
     // On détermine quelle carte jouer
