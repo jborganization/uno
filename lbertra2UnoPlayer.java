@@ -17,19 +17,29 @@ public class lbertra2UnoPlayer implements UnoPlayer {
   public int play(List<Card> hand, Card upCard, Color calledColor, GameState state) {
     ArrayList<Integer> numList=new ArrayList<Integer>();
     int higPos=-1;
-
     int skiPos=-1;
     int revPos=-1;
     int draPos=-1;
     int wilPos=-1;
     int wifPos=-1;
 
+    int redCounter = 0;
+    int greCounter = 0;
+    int bluCounter = 0;
+    int yelCounter = 0;
+    int numCounter = 0;
+    int skiCounter = 0;
+    int revCounter = 0;
+    int draCounter = 0;
+    int wilCounter = 0;
+    int wifCounter = 0;
+
     // POUR chaque carte en main FAIRE:
     for (int i=0;i<hand.size() ;i++ ) {
       if (hand.get(i).getRank()==Rank.NUMBER) {
         // SI elle est de la même couleur OU a le même numéro que la upCard ALORS ajouter son indice à la liste possibilities
         if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) {
-          numList.add(i);
+          numList.add(i);œ
         }
       }
       else if ( hand.get(i).getRank()==Rank.SKIP && ( upCard.getRank()==Rank.SKIP || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
@@ -58,6 +68,39 @@ public class lbertra2UnoPlayer implements UnoPlayer {
         }
       }
       higPos=numList.get(mem);
+    }
+
+    for (int i=0;i<state.getPlayedCards().size() ;i++ ) { //Cette boucle sert à compter les cartes jouées par les joueurs
+      if (state.getPlayedCards().get(i).getRank()==Rank.NUMBER) {
+        numCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getRank()==Rank.SKIP) {
+        skiCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getRank()==Rank.REVERSE) {
+        revCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getRank()==Rank.DRAW_TWO) {
+        draCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getRank()==Rank.WILD) {
+        wilCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getRank()==Rank.WILD_D4) {
+        wifCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getColor()==Color.RED) {
+        redCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getColor()==Color.GREEN) {
+        greCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getColor()==Color.BLUE) {
+        bluCounter++;
+      }
+      else if (state.getPlayedCards().get(i).getColor()==Color.YELLOW) {
+        yelCounter++;
+      }
     }
 
     // On détermine quelle carte jouer
