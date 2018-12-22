@@ -142,5 +142,4 @@ public class lbertra2UnoPlayer implements UnoPlayer {
       return Color.NONE;
     }
   }
-
 }

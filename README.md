@@ -46,4 +46,15 @@
 	javadoc -cp .:UnoS1.jar -d ./javadoc  lbertra2UnoPlayer.java
 
 5/ SONARQUBE
-/home/loic/program_files/sonarqube/SonnarRunner/bin/sonar-scanner
+
+	5.1/ Connect to iut via ssh :
+		ssh -D 9000 gate-info.iut-bm.univ-fcomte.fr -X
+
+	5.2/ change firefox parameters and browse to sonarqube page to get a token
+		firefox: Hote SOCKS: 127.0.0.1:9000
+		browser to : http://gitlab.iut-bm.univ-fcomte.fr:9000/
+
+	5.4/ follow instructions in manual
+
+	5.5/ run sonarscanner via
+		/home/loic/program_files/sonarqube/SonnarRunner/bin/sonar-scanner
