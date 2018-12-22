@@ -51,13 +51,14 @@ public class lbertra2UnoPlayer implements UnoPlayer {
 
     // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
     if (numList.size()>0) {
-      higPos=0;
+
+      int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(higPos)).getNumber()  ) {
-          higPos=numList.get(i);
-          System.out.print("aaa");
+        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber()  ) {
+          mem=i;
         }
       }
+      higPos=numList.get(mem);
     }
 
     // On détermine quelle carte jouer
@@ -66,9 +67,6 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     // if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=2) {
     //
     // }
-    System.out.println(numList);
-    System.out.println(numList.size());
-    System.out.println(hand.size());
     if (higPos>-1) {
       return higPos;
     }
