@@ -1,0 +1,2 @@
+1-joueur suivant a moins de 2 cartes
+2-joueur précédent a moins de 2 cartes
