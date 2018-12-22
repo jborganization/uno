@@ -28,17 +28,17 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     for (int i=0;i<hand.size() ;i++ ) {
       if (hand.get(i).getRank()==Rank.NUMBER) {
         // SI elle est de la même couleur OU a le même numéro que la upCard ALORS ajouter son indice à la liste possibilities
-        if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() ) {
+        if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) {
           numList.add(i);
         }
       }
-      else if ( hand.get(i).getRank()==Rank.SKIP && hand.get(i).getColor()==upCard.getColor() ) {
+      else if ( hand.get(i).getRank()==Rank.SKIP && ( upCard.getRank()==Rank.SKIP || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
         skiPos=i;
       }
-      else if ( hand.get(i).getRank()==Rank.REVERSE && hand.get(i).getColor()==upCard.getColor() ) {
+      else if ( hand.get(i).getRank()==Rank.REVERSE && ( upCard.getRank()==Rank.REVERSE || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
         revPos=i;
       }
-      else if ( hand.get(i).getRank()==Rank.DRAW_TWO && hand.get(i).getColor()==upCard.getColor() ) {
+      else if ( hand.get(i).getRank()==Rank.DRAW_TWO && ( upCard.getRank()==Rank.DRAW_TWO || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
         draPos=i;
       }
       else if ( hand.get(i).getRank()==Rank.WILD ) {
@@ -51,7 +51,6 @@ public class lbertra2UnoPlayer implements UnoPlayer {
 
     // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
     if (numList.size()>0) {
-
       int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
         if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber()  ) {
