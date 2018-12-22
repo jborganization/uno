@@ -2,6 +2,7 @@ package uno;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class lbertra2UnoPlayer implements UnoPlayer {
 
@@ -121,7 +122,27 @@ public class lbertra2UnoPlayer implements UnoPlayer {
         yelCounter++;
       }
     }
+    int rankRed,rankBlue,rankGreen,rankYellow;
+    ArrayList<Integer> listRank=new ArrayList<>();
+    listRank.add(redCounter);
+    listRank.add(yelCounter);
+    listRank.add(greCounter);
+    listRank.add(bluCounter);
 
+    Collections.sort(listRank);
+    for(int k = 0; k< listRank.size() ; k++){
+        if(listRank.get(k).equals(redCounter))
+            rankRed = k;
+
+        if(listRank.get(k).equals(yelCounter))
+            rankYellow = k;
+        if(listRank.get(k).equals(greCounter))
+            rankGreen = k;
+        if(listRank.get(k).equals(bluCounter))
+            rankBlue = k;
+
+    }
+    if ( !numList.isEmpty() ) {
     // SI on a le plus de cartes rouge
     if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter && isRed == true) {
       for (int i=0;i<numList.size() ;i++ ) {
@@ -162,6 +183,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     else {
       besPos = higPos;
     }
+  }
 
     // On détermine quelle carte jouer
 
