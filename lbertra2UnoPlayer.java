@@ -122,7 +122,10 @@ public class lbertra2UnoPlayer implements UnoPlayer {
         yelCounter++;
       }
     }
-    int rankRed,rankBlue,rankGreen,rankYellow;
+    int rankRed = 0;
+    int rankBlue = 0;
+    int rankGreen = 0;
+    int rankYellow = 0;
     ArrayList<Integer> listRank=new ArrayList<>();
     listRank.add(redCounter);
     listRank.add(yelCounter);
@@ -133,7 +136,6 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     for(int k = 0; k< listRank.size() ; k++){
         if(listRank.get(k).equals(redCounter))
             rankRed = k;
-
         if(listRank.get(k).equals(yelCounter))
             rankYellow = k;
         if(listRank.get(k).equals(greCounter))
@@ -143,47 +145,49 @@ public class lbertra2UnoPlayer implements UnoPlayer {
 
     }
     if ( !numList.isEmpty() ) {
-    // SI on a le plus de cartes rouge
-    if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter && isRed == true) {
-      for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.RED && hand.get(numList.get(memoire)).getColor() == Color.RED) {
-          memoire=i;
+    for(int m=0;m<4;m++){
+      // SI on a le plus de cartes rouge
+      if (rankRed == m && isRed == true) {
+        for (int i=0;i<numList.size() ;i++ ) {
+          if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.RED && hand.get(numList.get(memoire)).getColor() == Color.RED) {
+            memoire=i;
+          }
         }
+        besPos=numList.get(memoire);
       }
-      besPos=numList.get(memoire);
-    }
-    // SINON SI on a le plus de cartes jaune
-    else if (yelCounter>=redCounter && yelCounter>=greCounter && yelCounter>=bluCounter && isYel == true) {
-      for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.YELLOW && hand.get(numList.get(memoire)).getColor() == Color.YELLOW) {
-          memoire=i;
+      // SINON SI on a le plus de cartes jaune
+      else if (rankYellow == m && isYel == true){
+        for (int i=0;i<numList.size() ;i++ ) {
+          if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.YELLOW && hand.get(numList.get(memoire)).getColor() == Color.YELLOW) {
+            memoire=i;
+          }
         }
+        besPos=numList.get(memoire);
       }
-      besPos=numList.get(memoire);
-    }
-    // SINON SI on a le plus de cartes vertes
-    else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter && isGre == true) {
-      for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.GREEN && hand.get(numList.get(memoire)).getColor() == Color.GREEN) {
-          memoire=i;
+      // SINON SI on a le plus de cartes vertes
+      else if (rankGreen == m && isGre == true){
+        for (int i=0;i<numList.size() ;i++ ) {
+          if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.GREEN && hand.get(numList.get(memoire)).getColor() == Color.GREEN) {
+            memoire=i;
+          }
         }
+        besPos=numList.get(memoire);
       }
-      besPos=numList.get(memoire);
-    }
-    // SINON SI on a le plus de cartes bleu
-    else if (bluCounter>=redCounter && bluCounter>=yelCounter && bluCounter>=greCounter && isBlu == true) {
-      for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.BLUE && hand.get(numList.get(memoire)).getColor() == Color.BLUE) {
-          memoire=i;
+      // SINON SI on a le plus de cartes bleu
+      else if (rankBlue == m && isBlu == true){
+        for (int i=0;i<numList.size() ;i++ ) {
+          if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.BLUE && hand.get(numList.get(memoire)).getColor() == Color.BLUE) {
+            memoire=i;
+          }
         }
+        besPos=numList.get(memoire);
       }
-      besPos=numList.get(memoire);
-    }
     // SINON renvoyer Color.NONE pour déclencher une erreur
     else {
       besPos = higPos;
     }
   }
+}
 
     // On détermine quelle carte jouer
 
