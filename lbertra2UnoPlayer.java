@@ -69,10 +69,8 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     //   }
     // }
 
-    if (higPos>-1) {
-      return higPos;
-    }
-    else if (skiPos>-1) {
+
+    if (skiPos>-1) {
       return skiPos;
     }
     else if (revPos>-1) {
@@ -86,6 +84,9 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     }
     else if (wifPos>-1) {
       return wifPos;
+    }
+    else if (higPos>-1) {
+      return higPos;
     }
     else {
       return -1;
