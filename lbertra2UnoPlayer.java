@@ -24,104 +24,70 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     int wilPos=-1;
     int wifPos=-1;
 
-    boolean unoAlertOne=false;
-    boolean unoAlertTwo=false;
-    boolean unoAlertThree=false;
-
-
-    // si la upCard est numérotée
-    if (upCard.getRank()==Rank.NUMBER) {
-      // POUR chaque carte en main FAIRE:
-      for (int i=0;i<hand.size() ;i++ ) {
-        if (hand.get(i).getRank()==Rank.NUMBER) {
-          // SI elle est de la même couleur OU a le même numéro que la upCard ALORS ajouter son indice à la liste possibilities
-          if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() ) {
-            numList.add(i);
-          }
-        }
-        else if ( hand.get(i).getRank()==Rank.SKIP && hand.get(i).getColor()==upCard.getColor() ) {
-          skiPos=i;
-        }
-        else if ( hand.get(i).getRank()==Rank.REVERSE && hand.get(i).getColor()==upCard.getColor() ) {
-          revPos=i;
-        }
-        else if ( hand.get(i).getRank()==Rank.DRAW_TWO && hand.get(i).getColor()==upCard.getColor() ) {
-          draPos=i;
-        }
-        else if ( hand.get(i).getRank()==Rank.WILD ) {
-          wilPos=i;
-        }
-        else if ( hand.get(i).getRank()==Rank.WILD_D4 ) {
-          wifPos=i;
+    // POUR chaque carte en main FAIRE:
+    for (int i=0;i<hand.size() ;i++ ) {
+      if (hand.get(i).getRank()==Rank.NUMBER) {
+        // SI elle est de la même couleur OU a le même numéro que la upCard ALORS ajouter son indice à la liste possibilities
+        if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() ) {
+          numList.add(i);
         }
       }
-      // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
-      if (numList.size()>0) {
-        higPos=0;
-        for (int i=1;i<numList.size() ;i++ ) {
-          if ( hand.get(numList.get(i)).getNumber() > hand.get(higPos).getNumber()  ) {
-            higPos=numList.get(i);
-          }
-        }
+      else if ( hand.get(i).getRank()==Rank.SKIP && hand.get(i).getColor()==upCard.getColor() ) {
+        skiPos=i;
       }
-
-      // On détermine quelle carte jouer
-
-      // SI le joueur suivant a 2 cartes ou moins
-      // if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=2) {
-      //
-      // }
-
-      if (higPos>-1) {
-        return higPos;
+      else if ( hand.get(i).getRank()==Rank.REVERSE && hand.get(i).getColor()==upCard.getColor() ) {
+        revPos=i;
       }
-      else if (skiPos>-1) {
-        return skiPos;
+      else if ( hand.get(i).getRank()==Rank.DRAW_TWO && hand.get(i).getColor()==upCard.getColor() ) {
+        draPos=i;
       }
-      else if (revPos>-1) {
-        return revPos;
+      else if ( hand.get(i).getRank()==Rank.WILD ) {
+        wilPos=i;
       }
-      else if (draPos>-1) {
-        return draPos;
-      }
-      else if (wilPos>-1) {
-        return wilPos;
-      }
-      else if (wifPos>-1) {
-        return wifPos;
-      }
-      else {
-        return -1;
+      else if ( hand.get(i).getRank()==Rank.WILD_D4 ) {
+        wifPos=i;
       }
     }
 
-    // si la upCard est du rang "SKIP"
-    else if (upCard.getRank()==Rank.SKIP) {
-      return -1;
+    // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
+    if (numList.size()>0) {
+      higPos=-1;
+      for (int i=0;i<numList.size() ;i++ ) {
+        if ( hand.get(numList.get(i)).getNumber() > hand.get(higPos).getNumber()  ) {
+          higPos=numList.get(i);
+        }
+      }
     }
 
-    // si la upCard est du rang "REVERSE"
-    else if (upCard.getRank()==Rank.REVERSE) {
-      return 1;
-    }
+    // On détermine quelle carte jouer
 
-    // si la upCard est du rang "DRAW_TWO"
-    else if (upCard.getRank()==Rank.DRAW_TWO) {
-      return -1;
+    // SI le joueur suivant a 2 cartes ou moins
+    // if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=2) {
+    //
+    // }
+    System.out.println(numList);
+    System.out.println(higPos);
+    System.out.println(hand.size());
+    if (higPos>-1) {
+      return higPos;
     }
-
-    // si la upCard est du rang "WILD"
-    else if (upCard.getRank()==Rank.WILD) {
-      return 1;
+    else if (skiPos>-1) {
+      return skiPos;
     }
-
-    // si la upCard est du rang "WILD_D4"
-    else if (upCard.getRank()==Rank.WILD_D4) {
-      return -1;
+    else if (revPos>-1) {
+      return revPos;
     }
-
+    else if (draPos>-1) {
+      return draPos;
+    }
+    else if (wilPos>-1) {
+      return wilPos;
+    }
+    else if (wifPos>-1) {
+      return wifPos;
+    }
     else {
-      return 0;
+      return -1;
     }
   }
 
