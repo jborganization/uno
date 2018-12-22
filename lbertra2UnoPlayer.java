@@ -74,31 +74,31 @@ public class lbertra2UnoPlayer implements UnoPlayer {
       if (state.getPlayedCards().get(i).getRank()==Rank.NUMBER) {
         numCounter++;
       }
-      else if (state.getPlayedCards().get(i).getRank()==Rank.SKIP) {
+      if (state.getPlayedCards().get(i).getRank()==Rank.SKIP) {
         skiCounter++;
       }
-      else if (state.getPlayedCards().get(i).getRank()==Rank.REVERSE) {
+      if (state.getPlayedCards().get(i).getRank()==Rank.REVERSE) {
         revCounter++;
       }
-      else if (state.getPlayedCards().get(i).getRank()==Rank.DRAW_TWO) {
+      if (state.getPlayedCards().get(i).getRank()==Rank.DRAW_TWO) {
         draCounter++;
       }
-      else if (state.getPlayedCards().get(i).getRank()==Rank.WILD) {
+      if (state.getPlayedCards().get(i).getRank()==Rank.WILD) {
         wilCounter++;
       }
-      else if (state.getPlayedCards().get(i).getRank()==Rank.WILD_D4) {
+      if (state.getPlayedCards().get(i).getRank()==Rank.WILD_D4) {
         wifCounter++;
       }
-      else if (state.getPlayedCards().get(i).getColor()==Color.RED) {
+      if (state.getPlayedCards().get(i).getColor()==Color.RED) {
         redCounter++;
       }
-      else if (state.getPlayedCards().get(i).getColor()==Color.GREEN) {
+      if (state.getPlayedCards().get(i).getColor()==Color.GREEN) {
         greCounter++;
       }
-      else if (state.getPlayedCards().get(i).getColor()==Color.BLUE) {
+      if (state.getPlayedCards().get(i).getColor()==Color.BLUE) {
         bluCounter++;
       }
-      else if (state.getPlayedCards().get(i).getColor()==Color.YELLOW) {
+      if (state.getPlayedCards().get(i).getColor()==Color.YELLOW) {
         yelCounter++;
       }
     }
