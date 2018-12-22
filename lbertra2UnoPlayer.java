@@ -39,7 +39,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
       if (hand.get(i).getRank()==Rank.NUMBER) {
         // SI elle est de la même couleur OU a le même numéro que la upCard ALORS ajouter son indice à la liste possibilities
         if ( hand.get(i).getNumber()==upCard.getNumber() || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) {
-          numList.add(i);œ
+          numList.add(i);
         }
       }
       else if ( hand.get(i).getRank()==Rank.SKIP && ( upCard.getRank()==Rank.SKIP || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
