@@ -39,8 +39,11 @@
 			java -cp .:UnoS1.jar uno.TestCaseProcessor lbertra2
 
 		3.3/ Simuler une partie :
-			java -cp .:Unos1.jar uno.UnoSimulation 100 quiet
+			java -cp .:UnoS1.jar uno.UnoSimulation 100 quiet
 			java -cp .:UnoS1.jar uno.UnoSimulation 1000 verbose
 
 4/ JAVADOC
 	javadoc -cp .:UnoS1.jar -d ./javadoc  lbertra2UnoPlayer.java
+
+5/ SONARQUBE
+/home/loic/program_files/sonarqube/SonnarRunner/bin/sonar-scanner

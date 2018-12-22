@@ -1,0 +1,139 @@
+Environment variables:
+  - COLORTERM=truecolor
+  - COMPIZ_CONFIG_PROFILE=mate
+  - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+  - DEFAULTS_PATH=/usr/share/gconf/mate.default.path
+  - DESKTOP_SESSION=mate
+  - DISPLAY=:0
+  - GDMSESSION=mate
+  - GDM_LANG=fr_FR
+  - GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+  - GTK_MODULES=appmenu-gtk-module:gail:atk-bridge:canberra-gtk-module
+  - GTK_OVERLAY_SCROLLING=0
+  - HOME=/home/loic
+  - INSIDE_CAJA_PYTHON=
+  - JAVA_HOME=/home/loic/program_files/sonarqube/SonnarRunner/jre
+  - LANG=fr_FR.UTF-8
+  - LANGUAGE=fr_FR
+  - LESSCLOSE=/usr/bin/lesspipe %s %s
+  - LESSOPEN=| /usr/bin/lesspipe %s
+  - LOGNAME=loic
+  - LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+  - MANDATORY_PATH=/usr/share/gconf/mate.mandatory.path
+  - MATE_DESKTOP_SESSION_ID=this-is-deprecated
+  - NLSPATH=/usr/dt/lib/nls/msg/%L/%N.cat
+  - PATH=/usr/games:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  - PWD=/home/loic/Documents/javaprojects/uno
+  - QT_ACCESSIBILITY=1
+  - QT_AUTO_SCREEN_SCALE_FACTOR=0
+  - QT_QPA_PLATFORMTHEME=gtk2
+  - QT_SCALE_FACTOR=1
+  - SESSION_MANAGER=local/msiblackfire-linux:@/tmp/.ICE-unix/1522,unix/msiblackfire-linux:/tmp/.ICE-unix/1522
+  - SHELL=/bin/bash
+  - SHLVL=1
+  - SSH_AGENT_PID=1878
+  - SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+  - TERM=xterm
+  - UBUNTU_MENUPROXY=1
+  - USER=loic
+  - VTE_VERSION=5202
+  - WINDOWID=58772047
+  - XAUTHORITY=/home/loic/.Xauthority
+  - XDG_CONFIG_DIRS=/etc/xdg/xdg-mate:/etc/xdg
+  - XDG_CURRENT_DESKTOP=MATE
+  - XDG_DATA_DIRS=/usr/share/mate:/home/loic/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+  - XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/loic
+  - XDG_RUNTIME_DIR=/run/user/1000
+  - XDG_SEAT=seat0
+  - XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+  - XDG_SESSION_DESKTOP=mate
+  - XDG_SESSION_ID=c2
+  - XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+  - XDG_SESSION_TYPE=x11
+  - XDG_VTNR=7
+  - XFILESEARCHPATH=/usr/dt/app-defaults/%L/Dt
+  - _=/home/loic/program_files/sonarqube/SonnarRunner/bin/sonar-scanner
+System properties:
+  - awt.toolkit=sun.awt.X11.XToolkit
+  - file.encoding=UTF-8
+  - file.encoding.pkg=sun.io
+  - file.separator=/
+  - java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
+  - java.awt.headless=true
+  - java.awt.printerjob=sun.print.PSPrinterJob
+  - java.class.path=/home/loic/program_files/sonarqube/SonnarRunner/lib/sonar-scanner-cli-3.2.0.1227.jar
+  - java.class.version=52.0
+  - java.endorsed.dirs=/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/endorsed
+  - java.ext.dirs=/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/ext:/usr/java/packages/lib/ext
+  - java.home=/home/loic/program_files/sonarqube/SonnarRunner/jre
+  - java.io.tmpdir=/tmp
+  - java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+  - java.runtime.name=Java(TM) SE Runtime Environment
+  - java.runtime.version=1.8.0_121-b13
+  - java.specification.name=Java Platform API Specification
+  - java.specification.vendor=Oracle Corporation
+  - java.specification.version=1.8
+  - java.vendor=Oracle Corporation
+  - java.vendor.url=http://java.oracle.com/
+  - java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+  - java.version=1.8.0_121
+  - java.vm.info=mixed mode
+  - java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+  - java.vm.specification.name=Java Virtual Machine Specification
+  - java.vm.specification.vendor=Oracle Corporation
+  - java.vm.specification.version=1.8
+  - java.vm.vendor=Oracle Corporation
+  - java.vm.version=25.121-b13
+  - line.separator=
+
+  - os.arch=amd64
+  - os.name=Linux
+  - os.version=4.15.0-34-generic
+  - path.separator=:
+  - project.home=/home/loic/Documents/javaprojects/uno
+  - scanner.home=/home/loic/program_files/sonarqube/SonnarRunner
+  - sun.arch.data.model=64
+  - sun.boot.class.path=/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/resources.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/rt.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/sunrsasign.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/jsse.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/jce.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/charsets.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/jfr.jar:/home/loic/program_files/sonarqube/SonnarRunner/jre/classes
+  - sun.boot.library.path=/home/loic/program_files/sonarqube/SonnarRunner/jre/lib/amd64
+  - sun.cpu.endian=little
+  - sun.cpu.isalist=
+  - sun.io.unicode.encoding=UnicodeLittle
+  - sun.java.command=org.sonarsource.scanner.cli.Main -X
+  - sun.java.launcher=SUN_STANDARD
+  - sun.jnu.encoding=UTF-8
+  - sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+  - sun.os.patch.level=unknown
+  - user.country=FR
+  - user.dir=/home/loic/Documents/javaprojects/uno
+  - user.home=/home/loic
+  - user.language=fr
+  - user.name=loic
+  - user.timezone=Europe/Paris
+SonarQube plugins:
+  - SonarC# 6.5.0.3766 (csharp)
+  - SonarPython 1.8.0.1496 (python)
+  - SonarJava 4.15.0.12310 (java)
+  - Flex 2.3 (flex)
+  - SonarQube :: Plugins :: SCM :: Git 1.3.0.869 (scmgit)
+  - SonarXML 1.4.3.1027 (xml)
+  - SonarPHP 2.11.0.2485 (php)
+  - SonarTS 1.1.0.1079 (typescript)
+  - SonarQube :: Plugins :: SCM :: SVN 1.6.0.860 (scmsvn)
+  - SonarJS 3.2.0.5506 (javascript)
+Global properties:
+  - sonar.core.id=BF41A1F2-AWfT0U59JsID1C5JeX-x
+  - sonar.core.startTime=2018-12-22T03:55:00+0100
+Settings for module: login:projectID
+  - sonar.exclusions=UnoS1.jar
+  - sonar.host.url=http://localhost:9000
+  - sonar.login=******
+  - sonar.projectBaseDir=/home/loic/Documents/javaprojects/uno
+  - sonar.projectKey=login:projectID
+  - sonar.projectName=Â« une chaine nommant le projet Â»
+  - sonar.projectVersion=1.0
+  - sonar.scanner.app=ScannerCli
+  - sonar.scanner.appVersion=3.2.0.1227
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=.
+  - sonar.verbose=true
+  - sonar.working.directory=/home/loic/Documents/javaprojects/uno/.scannerwork
