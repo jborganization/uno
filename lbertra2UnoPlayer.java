@@ -23,6 +23,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     int wilPos=-1;
     int wifPos=-1;
     int besPos=-1;
+    int memoire = 0;
 
     boolean isRed = false;
     boolean isYel = false;
@@ -123,43 +124,39 @@ public class lbertra2UnoPlayer implements UnoPlayer {
 
     // SI on a le plus de cartes rouge
     if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter && isRed == true) {
-      int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber() && hand.get(numList.get(i)).getColor() == Color.RED && hand.get(numList.get(mem)).getColor() == Color.RED) {
-          mem=i;
+        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.RED && hand.get(numList.get(memoire)).getColor() == Color.RED) {
+          memoire=i;
         }
       }
-      besPos=numList.get(mem);
+      besPos=numList.get(memoire);
     }
     // SINON SI on a le plus de cartes jaune
     else if (yelCounter>=redCounter && yelCounter>=greCounter && yelCounter>=bluCounter && isYel == true) {
-      int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber() && hand.get(numList.get(i)).getColor() == Color.YELLOW && hand.get(numList.get(mem)).getColor() == Color.YELLOW) {
-          mem=i;
+        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.YELLOW && hand.get(numList.get(memoire)).getColor() == Color.YELLOW) {
+          memoire=i;
         }
       }
-      besPos=numList.get(mem);
+      besPos=numList.get(memoire);
     }
     // SINON SI on a le plus de cartes vertes
     else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter && isGre == true) {
-      int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber() && hand.get(numList.get(i)).getColor() == Color.GREEN && hand.get(numList.get(mem)).getColor() == Color.GREEN) {
-          mem=i;
+        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.GREEN && hand.get(numList.get(memoire)).getColor() == Color.GREEN) {
+          memoire=i;
         }
       }
-      besPos=numList.get(mem);
+      besPos=numList.get(memoire);
     }
     // SINON SI on a le plus de cartes bleu
     else if (bluCounter>=redCounter && bluCounter>=yelCounter && bluCounter>=greCounter && isBlu == true) {
-      int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
-        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber() && hand.get(numList.get(i)).getColor() == Color.BLUE && hand.get(numList.get(mem)).getColor() == Color.BLUE) {
-          mem=i;
+        if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(memoire)).getNumber() && hand.get(numList.get(i)).getColor() == Color.BLUE && hand.get(numList.get(memoire)).getColor() == Color.BLUE) {
+          memoire=i;
         }
       }
-      besPos=numList.get(mem);
+      besPos=numList.get(memoire);
     }
     // SINON renvoyer Color.NONE pour déclencher une erreur
     else {
@@ -190,6 +187,9 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     }
     else if (wifPos>-1) {
       return wifPos;
+    }
+    else if (besPos>-1) {
+      return besPos;
     }
     else if (higPos>-1) {
       return higPos;
