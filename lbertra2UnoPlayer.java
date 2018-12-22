@@ -14,8 +14,8 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     * @param state permet d'accéder aux informations globales de la partie.
     * @return indice de la carte jouée par notre joueur.
     */
-  public int play(List<Card> hand, Card upCard, Color calledColor, GameState state) {
-    ArrayList<Integer> numList=new ArrayList<Integer>();
+  public int play(List<Card> hand, Card upCard, Color calledColor,GameState state) {
+    ArrayList<Integer> numList=new ArrayList<>();
     int higPos=-1;
 
     int skiPos=-1;
@@ -50,7 +50,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     }
 
     // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
-    if (numList.size()>0) {
+    if ( !numList.isEmpty() ) {
       int mem=0;
       for (int i=0;i<numList.size() ;i++ ) {
         if ( hand.get(numList.get(i)).getNumber() >= hand.get(numList.get(mem)).getNumber()  ) {
@@ -64,8 +64,11 @@ public class lbertra2UnoPlayer implements UnoPlayer {
 
     // SI le joueur suivant a 2 cartes ou moins
     // if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=2) {
-    //
+    //   if (draPos>-1) {
+    //     return draPos;
+    //   }
     // }
+
     if (higPos>-1) {
       return higPos;
     }
@@ -87,6 +90,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     else {
       return -1;
     }
+
   }
 
   /**
