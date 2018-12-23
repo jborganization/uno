@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class lbertra2UnoPlayer implements UnoPlayer {
+public class lbertra2v1UnoPlayer implements UnoPlayer {
 
   /**
     * Détermine la carte que notre joueur va jouer et retourne son indice au sein de sa main.
