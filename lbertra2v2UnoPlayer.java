@@ -6,51 +6,6 @@ import java.util.ArrayList;
 public class lbertra2v2UnoPlayer implements UnoPlayer {
 
   /**
-    * Détermine la couleur la plus jouée sur les deux précédents tours.
-    * @param state permet d'accéder aux informations globales de la partie.
-    * @return couleur la plus jouée sur les deux précédents tours.
-    */
-  public Color mostPlayedColor(GameState state, int maxCountedTours) {
-
-    int redCounter = 0;
-    int yelCounter = 0;
-    int greCounter = 0;
-    int bluCounter = 0;
-
-    for ( int i=state.getPlayedCards().size()-1, tour=0 ; i>=0 && tour<maxCountedTours ; i-- , tour++ ) {
-      if (state.getPlayedCards().get(i).getColor()==Color.RED) {
-        redCounter++;
-      }
-      else if (state.getPlayedCards().get(i).getColor()==Color.YELLOW) {
-        yelCounter++;
-      }
-      else if (state.getPlayedCards().get(i).getColor()==Color.GREEN) {
-        greCounter++;
-      }
-      else if (state.getPlayedCards().get(i).getColor()==Color.BLUE) {
-        greCounter++;
-      }
-    }
-
-    // SI il y a plus de rouge
-    if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter) {
-      return Color.RED;
-    }
-    // SINON SI il y a plus de jaune
-    else if (yelCounter>=redCounter && yelCounter>=greCounter && yelCounter>=bluCounter) {
-      return Color.YELLOW;
-    }
-    // SINON SI il y a le plus de vert
-    else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter) {
-      return Color.GREEN;
-    }
-    // SINON (c'est qu'il y a le plus de bleu !)
-    else {
-      return Color.BLUE;
-    }
-  }
-
-  /**
     * Détermine la couleur que je possède le plus de fois dans ma main.
     * @param hand liste des cartes dans ma main.
     * @return couleur que je possède le plus de fois dans ma main.
@@ -96,9 +51,9 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
-    * Détermine si j'ai une couleur dans ma main.
+    * Détermine si j'ai une couleur donnée dans ma main.
     * @param hand liste des cartes dans ma main.
-    * @return vrai si je possède la couleur et faux le cas échéant.
+    * @return vrai si je possède la couleur, faux le cas échéant.
     */
   public boolean isColorHold(List<Card> hand, Color color) {
 
@@ -111,7 +66,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
-    * Détermine si le joueur précédent a beaucoup de cartes
+    * Détermine si le joueur précédent a beaucoup de cartes.
     * @param state permet d'accéder aux informations globales de la partie.
     * @param defcon limite au delà de laquelle on considère le nombre de carte comme beaucoup.
     * @return vrai si le joueur précédent a beaucoup de cartes, faux sinon.
@@ -126,8 +81,8 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   /**
     * Détermine si le joueur suivant s'approche de la victoire.
     * @param state permet d'accéder aux informations globales de la partie.
-    * @param defcon limite au delà de laquelle on considère le nombre de carte comme beaucoup.
-    * @return vrai si le joueur précédent a beaucoup de cartes, faux sinon.
+    * @param defcon limite en deçà de laquelle on considère que le joueur s'approche de la victoire.
+    * @return vrai si le joueur précédent s'approche de la victoire, faux sinon.
     */
   public boolean nextIsFinishing(GameState state, int defcon) {
     if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=defcon) {
@@ -137,10 +92,10 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
-    * Détermine si le joueur suivant s'approche de la victoire.
+    * Détermine si un joueur autre que le suivant s'approche de la victoire.
     * @param state permet d'accéder aux informations globales de la partie.
-    * @param defcon limite au delà de laquelle on considère le nombre de carte comme beaucoup.
-    * @return vrai si le joueur précédent a beaucoup de cartes, faux sinon.
+    * @param defcon limite en deçà de laquelle on considère que le joueur s'approche de la victoire.
+    * @return vrai si un joueur autre que le suivant s'approche de la victoire, faux sinon.
     */
   public boolean someoneIsFinishing(GameState state, int defcon) {
     if ( state.getNumCardsInHandsOfUpcomingPlayers()[1]<=defcon || state.getNumCardsInHandsOfUpcomingPlayers()[2]<=defcon ) {
@@ -149,28 +104,13 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
     return false;
   }
 
-  //INUTILE DEBUT
-  /**
-    * Construit la liste des numéros des cartes jouées d'une couleur donnée.
-    * @param state permet d'accéder aux informations globales de la partie.
-    * @param color couleur donnée.
-    * @return liste des numéros des cartes jouées de la couleur donnée.
-    */
-  public ArrayList<Integer> thisColorPlayedNumbers(GameState state, Color color) {
-    ArrayList<Integer> list=new ArrayList<>();
-
-    for ( int i=0 ; i<state.getPlayedCards().size() ; i++ ) {
-      if ( state.getPlayedCards().get(i).getColor()==color && state.getPlayedCards().get(i).getRank()==Rank.NUMBER) {
-        list.add(state.getPlayedCards().get(i).getNumber());
-      }
-    }
-    return list;
-  }
-  // INUTILE FIN
-
   /**
     * Détermine si le numéro de carte donné apparait dans la couleur donnée,
     * dans les cartes jouées.
+    * @param state permet d'accéder aux informations globales de la partie.
+    * @param color couleur donnée.
+    * @param number numéro de carte donné.
+    * @return vrai si le numéro donné apparait dans la couleur donnée, faux sinon.
     */
   public boolean isPlayed(GameState state, Color color, int number) {
 
@@ -183,7 +123,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
-    * Détermine quelle carte numérotée jouable présente dans ma main il est préférable de poser
+    * Détermine quelle carte numérotée jouable présente dans ma main il m'est préférable de poser.
     * @param hand liste des cartes dans ma main.
     * @param validNumCards liste des indices des cartes numérotées jouables.
     * @param state permet d'accéder aux informations globales de la partie.
@@ -271,7 +211,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
-    * Détermine quelle carte de rang donné jouable présente dans ma main il est préférable de poser
+    * Détermine quelle carte de rang donné jouable présente dans ma main il m'est préférable de poser.
     * @param hand liste des cartes dans ma main.
     * @param validRanCards liste des indices des cartes de ce rang et jouables.
     * @param state permet d'accéder aux informations globales de la partie.
