@@ -3,7 +3,7 @@ package uno;
 import java.util.List;
 import java.util.ArrayList;
 
-public class lbertra2UnoPlayer implements UnoPlayer {
+public class lbertra2v2UnoPlayer implements UnoPlayer {
 
   /**
     * Détermine la couleur la plus jouée sur les deux précédents tours.
@@ -123,6 +123,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     return false;
   }
 
+  //INUTILE DEBUT
   /**
     * Construit la liste des numéros des cartes jouées d'une couleur donnée.
     * @param state permet d'accéder aux informations globales de la partie.
@@ -139,6 +140,7 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     }
     return list;
   }
+  // INUTILE FIN
 
   /**
     * Détermine si le numéro de carte donné apparait dans la couleur donnée,
@@ -165,17 +167,81 @@ public class lbertra2UnoPlayer implements UnoPlayer {
     ArrayList<Integer> firstChoiceCards=new ArrayList<>();
     ArrayList<Integer> secondChoiceCards=new ArrayList<>();
 
-
-    if (!isColorHold(hand,Color.RED)) {
-      for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-
+    if ( !isColorHold(hand,Color.RED) || !isColorHold(hand,Color.YELLOW) || !isColorHold(hand,Color.GREEN) || !isColorHold(hand,Color.BLUE)) {
+      if ( !isColorHold(hand,Color.RED) ) {
+        for ( int i=0 ; i<validNumCards.size() ; i++ ) {
+          if (  isPlayed( state , Color.RED, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+            firstChoiceCards.add(validNumCards.get(i));
+          }
+          else {
+            secondChoiceCards.add(validNumCards.get(i));
+          }
+        }
+      }
+      if ( !isColorHold(hand,Color.YELLOW) ) {
+        for ( int i=0 ; i<validNumCards.size() ; i++ ) {
+          if (  isPlayed( state , Color.YELLOW, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+            firstChoiceCards.add(validNumCards.get(i));
+          }
+          else {
+            secondChoiceCards.add(validNumCards.get(i));
+          }
+        }
+      }
+      if ( !isColorHold(hand,Color.GREEN) ) {
+        for ( int i=0 ; i<validNumCards.size() ; i++ ) {
+          if (  isPlayed( state , Color.GREEN, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+            firstChoiceCards.add(validNumCards.get(i));
+          }
+          else {
+            secondChoiceCards.add(validNumCards.get(i));
+          }
+        }
+      }
+      if ( !isColorHold(hand,Color.BLUE) ) {
+        for ( int i=0 ; i<validNumCards.size() ; i++ ) {
+          if (  isPlayed( state , Color.BLUE, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+            firstChoiceCards.add(validNumCards.get(i));
+          }
+          else {
+            secondChoiceCards.add(validNumCards.get(i));
+          }
+        }
       }
     }
 
-    for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-
+    else {
+      for ( int i=0 ; i<validNumCards.size() ; i++ ) {
+        if ( hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          firstChoiceCards.add(validNumCards.get(i));
+        }
+        else {
+          secondChoiceCards.add(validNumCards.get(i));
+        }
+      }
     }
-    return -1;
+
+    int bestMem=0;
+
+    if ( !firstChoiceCards.isEmpty() ) {
+      for ( int i=0 ; i<firstChoiceCards.size() ; i++ ) {
+        if ( hand.get(firstChoiceCards.get(i)).getNumber() >= hand.get(firstChoiceCards.get(bestMem)).getNumber() ) {
+          bestMem=i;
+        }
+      }
+      return firstChoiceCards.get(bestMem);
+    }
+    else if ( !secondChoiceCards.isEmpty() ) {
+      for ( int i=0 ; i<secondChoiceCards.size() ; i++ ) {
+        if ( hand.get(secondChoiceCards.get(i)).getNumber() >= hand.get(secondChoiceCards.get(bestMem)).getNumber() ) {
+          bestMem=i;
+        }
+      }
+      return secondChoiceCards.get(bestMem);
+    }
+    else {
+      return -1;
+    }
   }
 
   /**
@@ -190,7 +256,6 @@ public class lbertra2UnoPlayer implements UnoPlayer {
   public int play(List<Card> hand, Card upCard, Color calledColor,GameState state) {
 
     ArrayList<Integer> validNumCards=new ArrayList<>();
-    int higPos=-1;
     int skiPos=-1;
     int revPos=-1;
     int draPos=-1;
@@ -222,18 +287,6 @@ public class lbertra2UnoPlayer implements UnoPlayer {
       }
     }
 
-    // SI il y en a, POUR chaque carte numérotée jouable, on cherche l'indice de la carte au plus grand chiffre
-    if ( !validNumCards.isEmpty() ) {
-      int mem=0;
-      for (int i=0;i<validNumCards.size() ;i++ ) {
-        if ( hand.get(validNumCards.get(i)).getNumber() >= hand.get(validNumCards.get(mem)).getNumber()  ) {
-          mem=i;
-        }
-      }
-      higPos=validNumCards.get(mem);
-    }
-
-
   if (skiPos>-1) {
     return skiPos;
   }
@@ -249,8 +302,8 @@ public class lbertra2UnoPlayer implements UnoPlayer {
   else if (wifPos>-1) {
     return wifPos;
   }
-  else if (higPos>-1) {
-    return higPos;
+  else if (bestNumChoice(hand,validNumCards,state)>-1) {
+    return bestNumChoice(hand,validNumCards,state);
   }
   else {
     return -1;
