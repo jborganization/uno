@@ -1,6 +1,0 @@
-projectKey=uno
-serverUrl=http://localhost:9000
-serverVersion=6.7.6.38781
-dashboardUrl=http://localhost:9000/dashboard/index/uno
-ceTaskId=AWfUDS3S-s4xkrAf48So
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWfUDS3S-s4xkrAf48So

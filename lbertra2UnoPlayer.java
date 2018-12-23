@@ -3,8 +3,7 @@ package uno;
 import java.util.List;
 import java.util.ArrayList;
 
-public class lbertra2v2UnoPlayer implements UnoPlayer {
-
+public class lbertra2UnoPlayer implements UnoPlayer {
 
   /**
     * Détermine si j'ai une couleur donnée dans ma main.
@@ -310,7 +309,6 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
       }
     }
 
-
     if (bestNumChoice>-1) {
       return bestNumChoice;
     }
@@ -374,7 +372,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
     else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter) {
       return Color.GREEN;
     }
-    // SINON (c'est qu'il y a le plus de bleu !)
+    // SINON c'est qu'il y a le plus de bleu OU que je n'ai plus que des WILD ou WILD_D4 en main.
     else {
       return Color.BLUE;
     }
