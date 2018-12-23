@@ -123,6 +123,32 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
     return false;
   }
 
+  /**
+    * Détermine si le joueur suivant s'approche de la victoire.
+    * @param state permet d'accéder aux informations globales de la partie.
+    * @param defcon limite au delà de laquelle on considère le nombre de carte comme beaucoup.
+    * @return vrai si le joueur précédent a beaucoup de cartes, faux sinon.
+    */
+  public boolean nextIsFinishing(GameState state, int defcon) {
+    if (state.getNumCardsInHandsOfUpcomingPlayers()[0]<=defcon) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+    * Détermine si le joueur suivant s'approche de la victoire.
+    * @param state permet d'accéder aux informations globales de la partie.
+    * @param defcon limite au delà de laquelle on considère le nombre de carte comme beaucoup.
+    * @return vrai si le joueur précédent a beaucoup de cartes, faux sinon.
+    */
+  public boolean someoneIsFinishing(GameState state, int defcon) {
+    if ( state.getNumCardsInHandsOfUpcomingPlayers()[1]<=defcon || state.getNumCardsInHandsOfUpcomingPlayers()[2]<=defcon ) {
+      return true;
+    }
+    return false;
+  }
+
   //INUTILE DEBUT
   /**
     * Construit la liste des numéros des cartes jouées d'une couleur donnée.
@@ -158,7 +184,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
 
   /**
     * Détermine quelle carte numérotée jouable présente dans ma main il est préférable de poser
-    * @param hand liste des cartes dans la main de notre joueur.
+    * @param hand liste des cartes dans ma main.
     * @param validNumCards liste des indices des cartes numérotées jouables.
     * @param state permet d'accéder aux informations globales de la partie.
     * @return indice de la carte numérotée la plus avantageuse
@@ -245,6 +271,29 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   }
 
   /**
+    * Détermine quelle carte de rang donné jouable présente dans ma main il est préférable de poser
+    * @param hand liste des cartes dans ma main.
+    * @param validRanCards liste des indices des cartes de ce rang et jouables.
+    * @param state permet d'accéder aux informations globales de la partie.
+    * @param rank rang des cartes de la liste.
+    * @return indice de la carte numérotée la plus avantageuse
+    */
+  public int bestRanChoice(List<Card> hand, ArrayList<Integer> validRanCards) {
+
+    if ( !validRanCards.isEmpty() ) {
+      for ( int i=0 ; i<validRanCards.size() ; i++ ) {
+        if ( hand.get(validRanCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          return validRanCards.get(i);
+        }
+      }
+      return validRanCards.get(0);
+    }
+    else {
+      return -1;
+    }
+  }
+
+  /**
     * Détermine la carte que je vais jouer en retournant son indice au sein de ma main.
     * Retourne -1 pour passer mon tour si je ne peux rien jouer.
     * @param hand liste des cartes de ma main.
@@ -256,9 +305,9 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
   public int play(List<Card> hand, Card upCard, Color calledColor,GameState state) {
 
     ArrayList<Integer> validNumCards=new ArrayList<>();
-    int skiPos=-1;
-    int revPos=-1;
-    int draPos=-1;
+    ArrayList<Integer> validSkiCards=new ArrayList<>();
+    ArrayList<Integer> validRevCards=new ArrayList<>();
+    ArrayList<Integer> validDraCards=new ArrayList<>();
     int wilPos=-1;
     int wifPos=-1;
 
@@ -271,13 +320,13 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
         }
       }
       else if ( hand.get(i).getRank()==Rank.SKIP && ( upCard.getRank()==Rank.SKIP || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
-        skiPos=i;
+        validSkiCards.add(i);
       }
       else if ( hand.get(i).getRank()==Rank.REVERSE && ( upCard.getRank()==Rank.REVERSE || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
-        revPos=i;
+        validRevCards.add(i);
       }
       else if ( hand.get(i).getRank()==Rank.DRAW_TWO && ( upCard.getRank()==Rank.DRAW_TWO || hand.get(i).getColor()==upCard.getColor() || hand.get(i).getColor()==calledColor ) ) {
-        draPos=i;
+        validDraCards.add(i);
       }
       else if ( hand.get(i).getRank()==Rank.WILD ) {
         wilPos=i;
@@ -287,27 +336,106 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
       }
     }
 
-  if (skiPos>-1) {
-    return skiPos;
-  }
-  else if (revPos>-1) {
-    return revPos;
-  }
-  else if (draPos>-1) {
-    return draPos;
-  }
-  else if (wilPos>-1) {
-    return wilPos;
-  }
-  else if (wifPos>-1) {
-    return wifPos;
-  }
-  else if (bestNumChoice(hand,validNumCards,state)>-1) {
-    return bestNumChoice(hand,validNumCards,state);
-  }
-  else {
-    return -1;
-  }
+    int bestNumChoice=bestNumChoice(hand,validNumCards,state);
+    int bestSkiChoice=bestRanChoice(hand, validSkiCards);
+    int bestRevChoice=bestRanChoice(hand, validRevCards);
+    int bestDraChoice=bestRanChoice(hand, validDraCards);
+
+    if ( prevIsDanger(state,5) ) {
+      if (bestRevChoice>-1) {
+        return bestRevChoice;
+      }
+      else if (bestNumChoice>-1) {
+        return bestNumChoice;
+      }
+      else if (bestSkiChoice>-1) {
+        return bestSkiChoice;
+      }
+      else if (bestDraChoice>-1) {
+        return bestDraChoice;
+      }
+      else if (wilPos>-1) {
+        return wilPos;
+      }
+      else if (wifPos>-1) {
+        return wifPos;
+      }
+
+      else {
+        return -1;
+      }
+    }
+
+    if ( nextIsFinishing(state,2) ) {
+      if (bestDraChoice>-1) {
+        return bestDraChoice;
+      }
+      else if (wifPos>-1) {
+        return wifPos;
+      }
+      else if (wilPos>-1) {
+        return wilPos;
+      }
+      else if (bestSkiChoice>-1) {
+        return bestSkiChoice;
+      }
+      else if (bestRevChoice>-1) {
+        return bestRevChoice;
+      }
+      else if (bestNumChoice>-1) {
+        return bestNumChoice;
+      }
+      else {
+        return -1;
+      }
+    }
+
+    if ( someoneIsFinishing(state,2) ) {
+      if (wifPos>-1) {
+        return wifPos;
+      }
+      else if (wilPos>-1) {
+        return wilPos;
+      }
+      else if (bestRevChoice>-1) {
+        return bestRevChoice;
+      }
+      else if (bestSkiChoice>-1) {
+        return bestSkiChoice;
+      }
+      else if (bestDraChoice>-1) {
+        return bestDraChoice;
+      }
+      else if (bestNumChoice>-1) {
+        return bestNumChoice;
+      }
+      else {
+        return -1;
+      }
+    }
+
+
+    if (bestNumChoice>-1) {
+      return bestNumChoice;
+    }
+    else if (bestSkiChoice>-1) {
+      return bestSkiChoice;
+    }
+    else if (bestRevChoice>-1) {
+      return bestRevChoice;
+    }
+    else if (bestDraChoice>-1) {
+      return bestDraChoice;
+    }
+    else if (wilPos>-1) {
+      return wilPos;
+    }
+    else if (wifPos>-1) {
+      return wifPos;
+    }
+    else {
+      return -1;
+    }
 
   }
 
