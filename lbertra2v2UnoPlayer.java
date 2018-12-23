@@ -5,50 +5,6 @@ import java.util.ArrayList;
 
 public class lbertra2v2UnoPlayer implements UnoPlayer {
 
-  /**
-    * Détermine la couleur que je possède le plus de fois dans ma main.
-    * @param hand liste des cartes dans ma main.
-    * @return couleur que je possède le plus de fois dans ma main.
-    */
-  public Color mostHoldColor(List<Card> hand) {
-
-    int redCounter = 0;
-    int yelCounter = 0;
-    int greCounter = 0;
-    int bluCounter = 0;
-
-    for ( int i=0 ; i<hand.size() ; i++ ) {
-      if (hand.get(i).getColor()==Color.RED) {
-        redCounter++;
-      }
-      else if (hand.get(i).getColor()==Color.YELLOW) {
-        yelCounter++;
-      }
-      else if (hand.get(i).getColor()==Color.GREEN) {
-        greCounter++;
-      }
-      else if (hand.get(i).getColor()==Color.BLUE) {
-        greCounter++;
-      }
-    }
-
-    // SI il y a plus de rouge
-    if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter) {
-      return Color.RED;
-    }
-    // SINON SI il y a plus de jaune
-    else if (yelCounter>=redCounter && yelCounter>=greCounter && yelCounter>=bluCounter) {
-      return Color.YELLOW;
-    }
-    // SINON SI il y a le plus de vert
-    else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter) {
-      return Color.GREEN;
-    }
-    // SINON (c'est qu'il y a le plus de bleu !)
-    else {
-      return Color.BLUE;
-    }
-  }
 
   /**
     * Détermine si j'ai une couleur donnée dans ma main.
@@ -136,7 +92,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
     if ( !isColorHold(hand,Color.RED) || !isColorHold(hand,Color.YELLOW) || !isColorHold(hand,Color.GREEN) || !isColorHold(hand,Color.BLUE)) {
       if ( !isColorHold(hand,Color.RED) ) {
         for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-          if (  isPlayed( state , Color.RED, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          if (  isPlayed( state , Color.RED, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==callColor(hand) ) {
             firstChoiceCards.add(validNumCards.get(i));
           }
           else {
@@ -146,7 +102,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
       }
       if ( !isColorHold(hand,Color.YELLOW) ) {
         for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-          if (  isPlayed( state , Color.YELLOW, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          if (  isPlayed( state , Color.YELLOW, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==callColor(hand) ) {
             firstChoiceCards.add(validNumCards.get(i));
           }
           else {
@@ -156,7 +112,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
       }
       if ( !isColorHold(hand,Color.GREEN) ) {
         for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-          if (  isPlayed( state , Color.GREEN, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          if (  isPlayed( state , Color.GREEN, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==callColor(hand) ) {
             firstChoiceCards.add(validNumCards.get(i));
           }
           else {
@@ -166,7 +122,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
       }
       if ( !isColorHold(hand,Color.BLUE) ) {
         for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-          if (  isPlayed( state , Color.BLUE, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+          if (  isPlayed( state , Color.BLUE, hand.get(validNumCards.get(i)).getNumber() ) && hand.get(validNumCards.get(i)).getColor()==callColor(hand) ) {
             firstChoiceCards.add(validNumCards.get(i));
           }
           else {
@@ -178,7 +134,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
 
     else {
       for ( int i=0 ; i<validNumCards.size() ; i++ ) {
-        if ( hand.get(validNumCards.get(i)).getColor()==mostHoldColor(hand) ) {
+        if ( hand.get(validNumCards.get(i)).getColor()==callColor(hand) ) {
           firstChoiceCards.add(validNumCards.get(i));
         }
         else {
@@ -222,7 +178,7 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
 
     if ( !validRanCards.isEmpty() ) {
       for ( int i=0 ; i<validRanCards.size() ; i++ ) {
-        if ( hand.get(validRanCards.get(i)).getColor()==mostHoldColor(hand) ) {
+        if ( hand.get(validRanCards.get(i)).getColor()==callColor(hand) ) {
           return validRanCards.get(i);
         }
       }
@@ -386,50 +342,41 @@ public class lbertra2v2UnoPlayer implements UnoPlayer {
     */
   public Color callColor(List<Card> hand) {
 
-    int redCounter=0;
-    int yelCounter=0;
-    int greCounter=0;
-    int bluCounter=0;
+    int redCounter = 0;
+    int yelCounter = 0;
+    int greCounter = 0;
+    int bluCounter = 0;
 
-    // POUR chaque carte en main FAIRE:
-    for (int i=0;i<hand.size();i++ ) {
-      // SI elle est rouge, incrémenter redCounter
+    for ( int i=0 ; i<hand.size() ; i++ ) {
       if (hand.get(i).getColor()==Color.RED) {
         redCounter++;
       }
-      // SI elle est jaune, incrémenter yelCounter
-      if (hand.get(i).getColor()==Color.YELLOW) {
+      else if (hand.get(i).getColor()==Color.YELLOW) {
         yelCounter++;
       }
-      // SI elle est verte, incrémenter greCounter
-      if (hand.get(i).getColor()==Color.GREEN) {
+      else if (hand.get(i).getColor()==Color.GREEN) {
         greCounter++;
       }
-      // SI elle est bleu, incrémenter bluCounter
-      if (hand.get(i).getColor()==Color.BLUE) {
-        bluCounter++;
+      else if (hand.get(i).getColor()==Color.BLUE) {
+        greCounter++;
       }
     }
 
-    // SI on a le plus de cartes rouge
+    // SI il y a plus de rouge
     if (redCounter>=yelCounter && redCounter>=greCounter && redCounter>=bluCounter) {
       return Color.RED;
     }
-    // SINON SI on a le plus de cartes jaune
+    // SINON SI il y a plus de jaune
     else if (yelCounter>=redCounter && yelCounter>=greCounter && yelCounter>=bluCounter) {
       return Color.YELLOW;
     }
-    // SINON SI on a le plus de cartes vertes
+    // SINON SI il y a le plus de vert
     else if (greCounter>=redCounter && greCounter>=yelCounter && greCounter>=bluCounter) {
       return Color.GREEN;
     }
-    // SINON SI on a le plus de cartes bleu
-    else if (bluCounter>=redCounter && bluCounter>=yelCounter && bluCounter>=greCounter) {
-      return Color.BLUE;
-    }
-    // SINON renvoyer Color.NONE pour déclencher une erreur
+    // SINON (c'est qu'il y a le plus de bleu !)
     else {
-      return Color.NONE;
+      return Color.BLUE;
     }
   }
 }
